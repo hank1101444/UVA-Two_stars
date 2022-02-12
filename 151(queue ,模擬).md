@@ -20,7 +20,7 @@ bool check(int number, int dif)
 		q.pop();
 		if (flag == dif)
 		{
-			if (temp == 13)
+			if (temp == 13)		//modify q.front() == 13
 				break;
 			flag = 0;
 		}
@@ -41,7 +41,7 @@ int main()
 	{
 		if (n == 0)
 			break;
-		for (int i = 1;; i++)
+		for (int i = 1;; i++)		// modify 題目沒有說 i<=n
 		{
 			if (check(n, i))
 			{
