@@ -5,7 +5,6 @@ using namespace std;
 #include <string>
 int main() {
 	map <string, int> m;
-	map <string, int> ::iterator mit;
 	int n1, n2;
 	cin >> n1 >> n2;
 	string s;
@@ -16,14 +15,9 @@ int main() {
 	}
 	while (n2--) {
 		int _m = 0;
-		while (cin >> s) {
-			if (s == ".")
-				break;
-			mit = m.find(s);
-			if (mit != m.end()) {
-				_m += mit->second;
-			}
-		}
+		while (cin >> s && s != ".")
+			_m += m[s];
+
 		cout << _m << endl;
 	}
 
