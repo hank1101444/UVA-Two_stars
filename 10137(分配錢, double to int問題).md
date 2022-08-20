@@ -35,26 +35,29 @@ int main() {
 }
 ```
 
-# AC
+# AC 要改double 因為 double to int 會有問題
 ```cpp
 #include <iostream>
 using namespace std;
 #include <cmath>
 #include <algorithm>
 #include <cstring>
-int cost[1001];
+#include <cstdio>
+double cost[1001];
 
-bool cmp(int a, int b) { return a > b; }
+bool cmp(double a, double b) { return a > b; }
 
 int main() {
 	memset(cost, 0, sizeof(cost));
 	int n;
 	double d;
 	while (cin >> n && n != 0) {
-		int ans = 0, avg = 0, rem = 0;
+		double ans = 0;
+		int avg = 0, rem = 0;
 		for (int i = 0; i < n; ++i) {
+			// 278.78
 			cin >> d;
-			cost[i] = d * 100;
+			cost[i] = d* 100;
 			avg += cost[i];
 		}
 		rem = avg % n;
@@ -68,8 +71,6 @@ int main() {
 		// 因為現在算了出錢多的 也算了出少的 錢多的轉移量 = 錢少的轉移量 所以要/2
 		printf("$%.2lf\n", ans / 200.0);
 	}
-
 	return 0;
 }
-
 ```
