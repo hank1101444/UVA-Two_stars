@@ -5,4 +5,4 @@
 ## Insertion or removal of elements - linear O(n)
 
 ## iterator 失效 : https://www.geeksforgeeks.org/iterator-invalidation-cpp/
-
+## : https://en.cppreference.com/w/cpp/container/deque
