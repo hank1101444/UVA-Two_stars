@@ -1,3 +1,5 @@
+
+## ans 是將每次結果加起來
 ```cpp
 #include <iostream>
 using namespace std;
