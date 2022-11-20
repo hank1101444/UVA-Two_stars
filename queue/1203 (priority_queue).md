@@ -9,6 +9,7 @@ public:
 };
 // 不能寫成 member function
 bool operator < (const datas& a, const datas& b) {
+	// return true 代表要交換
 	if (a.next == b.next)
 		return a.Q > b.Q;
 	// 直觀 false 不用交換
