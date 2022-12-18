@@ -52,10 +52,10 @@ void dfs_bg(int x, int y) {
 			int xtp = x + dir[i][0];
 			int ytp = y + dir[i][1];
 			// 多增加一圈 讓他把所有背景走過
-			if (xtp >= 0 && ytp >= 0 && xtp <= H + 1 && ytp <= W + 1 && check[xtp][ytp] !='1') {
+			if (xtp >= 0 && ytp >= 0 && xtp <= H + 1 && ytp <= W + 1 && check[xtp][ytp] != '1') {
 				dfs_bg(xtp, ytp);
 			}
- 		}
+		}
 	}
 }
 
@@ -72,7 +72,7 @@ void dfsW(int x, int y) {
 	}
 }
 
-
+// 看黑色裡白色數目來決定代表字
 void dfsB(int x, int y) {
 	if (graph[x][y] == White && check[x][y] != '1') {
 		sum += 1;
@@ -111,6 +111,7 @@ int main() {
 		W *= 4;
 		// detect bg
 		dfs_bg(0, 0);
+		// 從 (1,1 )開始當地圖因為要先跑完背景使黑色碰到裡面為白色時能計算
 		for (int i = 1; i <= H; ++i) {
 			for (int j = 1; j <= W; ++j) {
 				if (graph[i][j] == Black && check[i][j] != '1') {
