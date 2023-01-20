@@ -21,59 +21,74 @@ if (duplicate[i] != 1) {	// TLE
 #include <iostream>
 using namespace std;
 #include <vector>
+#include <cstring>
+const int mxN = 50010;
+vector <int> graph[mxN];
+bool visit[mxN], duplicate[mxN];
+int tp, T, u, v, N, kase = 1;
 
-vector <int> email;
-// why bool faster than int??
-vector <bool> check, duplicate;
-int T, N, u, v, sum, c = 1;
-pair <int, int> mx;
-
-
-void dfs(int _u) {
-	if (email[_u] == -1)
-		return;
-	if (check[_u] == 0) {
-		sum += 1;
-		check[_u] = true;
-		duplicate[_u] = true;
-		dfs(email[_u]);
+void init(int n) {
+	for (int i = 1; i<= n; ++i) {
+		graph[i].clear();
 	}
+	memset(visit, 0, sizeof(visit));
+	memset(duplicate, 0, sizeof(duplicate));
+
 }
 
-
-int main() {
+void fast() {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 	cout.tie(0);
+}
 
+
+int DFS(int curr) {
+	for (int i = 0; i < graph[curr].size(); ++i) {
+		if (!visit[graph[curr][i]]) {
+			visit[graph[curr][i]] = 1;
+			duplicate[graph[curr][i]] = 1;
+			return 1 + DFS(graph[curr][i]);
+		}
+	}
+	return 0;
+}
+
+
+
+int main() {
+	fast();
 	cin >> T;
 	while (T--) {
 		cin >> N;
-		sum = 0;
-		mx = make_pair(0, 0);
-		email.assign(N + 1, -1);
-		duplicate.assign(N + 1, false);
+		init(N);
 		for (int i = 0; i < N; ++i) {
-			cin >> u >>  v;
-			email[u] = v;
+			cin >> u >> v;
+			graph[u].push_back(v);
 		}
-		for (int i = 1; i <= N; ++i) {	//error 0 要浪費
-			// 如果 i 在前面被做過一次那就不用再做一次了，因為前面是從某個人寄到 i
-            // 一定會比直接寄到 i 還要多人
-			if (duplicate[i] != 1) {	// TLE
-				check.assign(N + 1, false);	//error
-				dfs(i);
-				// 如果數量相同 則輸出數字小的人
-				if (sum > mx.second) {
-					mx.first = i;
-					mx.second = sum;
-				}
-				sum = 0;
+		int mx_id = 1000, mx = 0;
+		for (int i = 1; i <= N; ++i) {
+			if (duplicate[i])
+				continue;
+			memset(visit, 0, sizeof(visit));
+			visit[i] = 1;
+			tp = DFS(i);
+			if (tp > mx) {
+				mx = tp;
+				mx_id = i;
+			}
+			else if (tp == mx) {
+				mx = tp;
+				mx_id = min(mx_id, i);
 			}
 		}
-		cout << "Case " << c++ << ": " << mx.first << '\n';
+		cout << "Case " << kase++ << ": " << mx_id << '\n';
 	}
 
 	return 0;
+	// 如果 i 在前面被做過一次那就不用再做一次了，因為前面是從某個人寄到 i
+            // 一定會比直接寄到 i 還要多人
+					// 如果數量相同 則輸出數字小的人
+
 }
 ```
