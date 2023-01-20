@@ -67,6 +67,8 @@ int main() {
 			graph[u].push_back(v);
 		}
 		int mx_id = 1000, mx = 0;
+	    // 如果 i 在前面被做過一次那就不用再做一次了，因為前面是從某個人寄到 i
+            // 一定會比直接寄到 i 還要多人
 		for (int i = 1; i <= N; ++i) {
 			if (duplicate[i])
 				continue;
@@ -79,16 +81,14 @@ int main() {
 			}
 			else if (tp == mx) {
 				mx = tp;
-				mx_id = min(mx_id, i);
+				mx_id = min(mx_id, i);	// 如果數量相同 則輸出數字小的人
 			}
 		}
 		cout << "Case " << kase++ << ": " << mx_id << '\n';
 	}
 
 	return 0;
-	// 如果 i 在前面被做過一次那就不用再做一次了，因為前面是從某個人寄到 i
-            // 一定會比直接寄到 i 還要多人
-					// 如果數量相同 則輸出數字小的人
+
 
 }
 ```
