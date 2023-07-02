@@ -10,7 +10,7 @@ vector <p> edges[mxN];
 int D[mxN];
 int node_num, edge_num, u, v, w, start, End;
 bool check[mxN];
-priority_queue<p, vector<p>, greater<p>> pq;
+priority_queue<p> pq;
 
 void dijkstra(int start) {
 	D[start] = 0;
