@@ -27,7 +27,7 @@ void dijkstra(int start) {
 		for (int i = 0; i < edges[current_node].size(); ++i) {
 			int nx_node = edges[current_node][i].first;
 			int edge_weight = edges[current_node][i].second;
-			if (!check[nx_node] && edge_weight + current_node < D[nx_node]) {	//有找到更小的該點就持續push 進去, 如果已經卻認為最小(已pop過)或不能變更小就不會進去
+			if (!check[nx_node] && edge_weight + current_node < D[nx_node] //最長：>) {	//有找到更小的該點就持續push 進去, 如果已經卻認為最小(已pop過)或不能變更小就不會進去
 				D[nx_node] = node_w + edge_weight;
 				pq.push(make_pair(D[nx_node], nx_node));//一個點可能被重複push 進去好幾次
 			}
