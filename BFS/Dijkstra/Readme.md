@@ -10,7 +10,11 @@ vector <p> edges[mxN];
 int D[mxN];
 int node_num, edge_num, u, v, w, start, End;
 bool check[mxN];
+//最短路徑
 priority_queue<p> pq;
+
+//最長路徑
+//priority_queue<p, vector<p>, greater<p>> pq;
 
 void dijkstra(int start) {
 	D[start] = 0;
@@ -38,6 +42,9 @@ void init() {
 	for (int i = 0; i < node_num; ++i) {
 		edges[i].clear();
 		D[i] = INT_MAX;
+		//最長
+		//D[i] = 0;
+
 	}
 	memset(check, 0, sizeof(check));
 }
