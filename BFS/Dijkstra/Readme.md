@@ -10,10 +10,10 @@ vector <p> edges[mxN];
 int D[mxN];
 int node_num, edge_num, u, v, w, start, End;
 bool check[mxN];
-//最短路徑
+//最長路徑
 priority_queue<p> pq;
 
-//最長路徑
+//最短路徑
 //priority_queue<p, vector<p>, greater<p>> pq;
 
 void dijkstra(int start) {
